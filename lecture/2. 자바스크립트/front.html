@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </head>
+  <body></body>
+  <script>
+    // get
+    axios
+      .get("https://www.zerocho.com/api/get")
+      .then((reuslt) => {
+        console.log(reuslt);
+        console.log(reuslt.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+
+    (async () => {
+      try {
+        const result = await axios.get("https://www.zerocho.com/api/get");
+        console.log(result);
+        console.log(result.data);
+      } catch (error) {
+        console.error(error);
+      }
+    })();
+
+    // post
+    (async () => {
+      try {
+        result = await axios.post("https://www.zerocho.com/api/post/json", {
+          name: "zerocho",
+          birth: 1994,
+        });
+        console.log(result);
+        console.log(result.data);
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+
+    // formdata
+    const formData = new FormData();
+    formData.append("name", "zeorocho");
+    formData.has("item");
+    formData.get("item");
+    formData.getAll("item");
+    formData.delete("item");
+    formData.set("item", "apple");
+    console.log(formData);
+
+    //formdata post
+    (async () => {
+      try {
+        const formData = new FormData();
+        formData.append("name", "zerocho");
+        formData.append("birth", 1994);
+        const result = await axios.post(
+          "https://www.zerocho.com/api/post/formdata",
+          formData
+        );
+        console.log(result);
+        console.log(result.data);
+      } catch (error) {
+        console.error(error);
+      }
+    })();
+
+    // encodeURIComponent
+    (async () => {
+      try {
+        const result = await axios.get(
+          `https://www.zerocho.com/api/search/${encodeURIComponent("노드")}`
+        );
+        console.log(result);
+        console.log(result.data);
+      } catch (error) {
+        console.error(error);
+      }
+    })();
+  </script>
+</html>
